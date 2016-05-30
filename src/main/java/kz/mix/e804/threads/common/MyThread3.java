@@ -1,5 +1,5 @@
 //CHECKSTYLE:OFF
-package kz.mix.e804.threads;
+package kz.mix.e804.threads.common;
 
 public class MyThread3 implements Runnable {
     public void run() {
