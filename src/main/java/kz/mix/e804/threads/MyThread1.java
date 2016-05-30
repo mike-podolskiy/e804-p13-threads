@@ -16,6 +16,6 @@ public class MyThread1 extends Thread{
     public static void main(String[] args) {
         Thread myThread = new MyThread1();
         myThread.start();
-        System.out.println("in main method; thread name is: " + Thread.currentThread().getName());
+        System.out.println("In main method; thread name is: " + Thread.currentThread().getName());
     }
 }
