@@ -19,9 +19,11 @@ class Count implements Runnable {
     // this method increments runs variable first and then increments the balls variable
     // since these variables are accessible from other threads,
     // we need to acquire a lock before processing them
-    public void IncrementBallAfterRun() {
+    public void IncrementBallAfterRun() throws InterruptedException {
         // since we're updating runs variable first, lock the Runs.class reference first
         synchronized (Runs.class) {
+            Thread.sleep(10);
+
             // now acquire lock on Balls.class variable before updating balls variable
             synchronized (Balls.class) {
                 Runs.runs++;
@@ -30,9 +32,11 @@ class Count implements Runnable {
         }
     }
 
-    public void IncrementRunAfterBall() {
+    public void IncrementRunAfterBall() throws InterruptedException {
         // since we're updating balls variable first, lock the Balls.class reference first
         synchronized (Balls.class) {
+            Thread.sleep(10);
+
             // now acquire lock on Runs.class variable before updating runs variable
             synchronized (Runs.class) {
                 Balls.balls++;
@@ -46,8 +50,12 @@ class Count implements Runnable {
         // call these two methods which acquire locks in different order
         // depending on thread scheduling and the order of lock acquision,
         // a deadlock may or may not arise
-        IncrementBallAfterRun();
-        IncrementRunAfterBall();
+        try {
+            IncrementBallAfterRun();
+            IncrementRunAfterBall();
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
     }
 }
 
@@ -62,7 +70,7 @@ public class DeadLock {
         t2.start();
 
         System.out.println("Waiting for threads to complete execution...");
-        t2.join();
+        t1.join();
         t2.join();
         System.out.println("Done.");
     }

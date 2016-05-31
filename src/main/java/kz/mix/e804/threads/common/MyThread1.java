@@ -1,7 +1,7 @@
 //CHECKSTYLE:OFF
 package kz.mix.e804.threads.common;
 
-public class MyThread1 extends Thread{
+public class MyThread1 extends Thread {
     public void run() {
         try {
             sleep(1000);
