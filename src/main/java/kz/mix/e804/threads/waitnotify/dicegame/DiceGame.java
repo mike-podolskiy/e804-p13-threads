@@ -1,5 +1,5 @@
 //CHECKSTYLE:OFF
-package kz.mix.e804.threads.waitnotify;
+package kz.mix.e804.threads.waitnotify.dicegame;
 
 import java.util.Random;
 
