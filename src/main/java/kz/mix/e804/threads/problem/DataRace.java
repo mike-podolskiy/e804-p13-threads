@@ -14,6 +14,12 @@ class UseCounter implements Runnable {
         // increments the counter and prints the value
         // of the counter shared between threads
         Counter.count++;
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+
         System.out.println(Counter.count + "  ");
     }
 
